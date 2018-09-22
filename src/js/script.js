@@ -1,4 +1,4 @@
-const withAssetsPath = (src) => `./assets/${src}`; 
+const withAssetsPath = (src) => `./assets/${src}`;
 const audioMonster = new Audio(withAssetsPath('monster.mp3'));
 const audioLaugh = new Audio(withAssetsPath('laugh.mp3'));
 
@@ -96,9 +96,9 @@ background3.src = withAssetsPath("success.jpg");
 const background4 = new Image();
 background4.src = withAssetsPath("bridge.jpg");
 const APointImg = new Image();
-APointImg.src = withAssetsPath("A-Point.png");
+APointImg.src = withAssetsPath("A-point.png");
 const FPointImg = new Image();
-FPointImg.src = withAssetsPath("F-Point.png");
+FPointImg.src = withAssetsPath("F-point.png");
 const officeImg = new Image();
 officeImg.src = withAssetsPath("office.png");
 
@@ -127,7 +127,7 @@ const gameData = {
         w: 350,
         h: 250
     },
-    
+
     monsters: {
 
         multimouth: {
@@ -178,7 +178,7 @@ const gameData = {
         h: 600,
     },
 
-    ninja: { 
+    ninja: {
         pic: [ninjaImg, ninjahookImg],
         x: 5000,
         y: floorYm - 65,
@@ -205,7 +205,7 @@ const gameData = {
         lvlCountF: [4, 6, 8, 10]
     },
 
-    cloud: { 
+    cloud: {
         x: 5000,
         y: floorYm - 265,
         w: 300,
@@ -220,12 +220,12 @@ const hero = gameData.hero;
 const multimouth = gameData.monsters.multimouth;
 const octopus = gameData.monsters.octopus;
 const devil = gameData.monsters.devil;
-const exam = gameData.exam; 
+const exam = gameData.exam;
 const ninja = gameData.ninja;
 const monsters = [multimouth, octopus, devil];
 const score = gameData.score;
 const background = gameData.background;
-const cloud = gameData.cloud; 
+const cloud = gameData.cloud;
 const arrayA = [];
 const arrayF = [];
 let isJumping = false;
@@ -321,13 +321,13 @@ const draw = function() {
     })
 
     context.drawImage(hero.pic[imgNum], hero.x - hero.w / 3, hero.y, hero.w, hero.h);
-    context.drawImage(exam.pic, exam.x1, exam.y, exam.w, exam.h); 
+    context.drawImage(exam.pic, exam.x1, exam.y, exam.w, exam.h);
     context.drawImage(exam.pic, exam.x2, exam.y, exam.w, exam.h);
     context.drawImage(exam.pic, exam.x3, exam.y, exam.w, exam.h);
     context.drawImage(exam.pic, exam.x4, exam.y, exam.w, exam.h);
     move();
 
-    if (ninja.x - hero.x < 600) { 
+    if (ninja.x - hero.x < 600) {
         context.drawImage(ninja.pic[1], ninja.x, ninja.y, ninja.w[1], ninja.h);
         context.drawImage(cloud.pic, cloud.x, cloud.y, cloud.w, cloud.h);
         context.fillStyle = 'white';
@@ -341,7 +341,7 @@ const draw = function() {
     } else {
         context.drawImage(ninja.pic[0], ninja.x, ninja.y, ninja.w[0], ninja.h);
     }
-    
+
     if(pointLose){
         context.font = '70px Arial';
         context.fillStyle = 'yellow';
@@ -389,37 +389,37 @@ const draw = function() {
 
 const move = function() {
 
-    if (isMoving === true && !Death) { 
+    if (isMoving === true && !Death) {
 
         if(heroCondition === 1){
-            if (imgNum <= 6) { 
+            if (imgNum <= 6) {
                 imgNum++;
             } else {
                 imgNum = 0;
             }
         }
         if(heroCondition === 2){
-            if (imgNum <= 14) { 
+            if (imgNum <= 14) {
                 imgNum++;
             } else {
                 imgNum = 8;
             }
         }
         if(heroCondition === 3){
-            if (imgNum <= 22) { 
+            if (imgNum <= 22) {
                 imgNum++;
             } else {
                 imgNum = 16;
             }
         }
         if(heroCondition === 4){
-            if (imgNum <= 30) { 
+            if (imgNum <= 30) {
                 imgNum++;
             } else {
                 imgNum = 24;
             }
         }
-        
+
     }
 
     if (isMoving === true) {
@@ -644,7 +644,7 @@ const monsterPos = function() {
             }
         }
     }
-    
+
     forEach(monsters, function(monsters) {
         monsters.x1 = position[rand(position.length)];
         deletePos(monsters.x1);
@@ -656,14 +656,14 @@ const monsterPos = function() {
     })
 }
 
-const runAnimation = () => { 
+const runAnimation = () => {
     createPoints(level,0);
     monsterPos();
     loop();
 }
 runAnimation();
 
-document.addEventListener('keydown', function(event) { 
+document.addEventListener('keydown', function(event) {
 
     if (event.keyCode === rightKey) {
         isMoving = true;
@@ -696,7 +696,7 @@ document.addEventListener('keydown', function(event) {
     }
 }, false);
 
-document.addEventListener('keyup', function(event) { 
+document.addEventListener('keyup', function(event) {
     if (event.keyCode === rightKey) {
         isMoving = false;
         if(heroCondition === 1){
@@ -713,7 +713,7 @@ document.addEventListener('keyup', function(event) {
         }
     }
 }, false)
-canvas.addEventListener('click', function(e) { 
+canvas.addEventListener('click', function(e) {
     if (Death) {
         if (Math.sqrt((e.offsetX - 500) ** 2 + (e.offsetY - 300) ** 2) < 100) {
             document.location.reload();
